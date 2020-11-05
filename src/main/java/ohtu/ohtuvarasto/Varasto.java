@@ -18,20 +18,16 @@ public class Varasto {
     }
 
     public Varasto(double tilavuus, double alkuSaldo) { // kuormitetaan
-        this.tilavuus = 0.0;
+        this.tilavuus = Math.max(0.0, tilavuus);
+        this.saldo = Math.min(alkuSaldo, tilavuus);
         
-        if (tilavuus > 0.0) {
-            this.tilavuus = tilavuus;
+        if (this.tilavuus < 0.0) {
+            this.tilavuus = 0.0;
+            this.saldo = 0.0;
         }
         
-        this.saldo = 0.0;
-        
-        if (alkuSaldo > 0.0) {
-            this.saldo = alkuSaldo;
-        }
-        
-        if(saldo > tilavuus) {
-            this.saldo = tilavuus;
+        if (this.saldo < 0.0) {
+            this.saldo = 0.0;
         }
     }
 
